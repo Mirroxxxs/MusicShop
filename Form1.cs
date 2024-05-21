@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
 
 namespace MusicShop
@@ -17,29 +10,42 @@ namespace MusicShop
             InitializeComponent();
         }
 
+        // Обработчик события нажатия кнопки "Регистрация"
         private void register_Click(object sender, EventArgs e)
         {
+            // Создание экземпляра формы для регистрации
             Form2 regist = new Form2();
+
+            // Отображение формы для регистрации и скрытие текущей формы
             regist.Show();
             Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Обработчик события нажатия кнопки "Ввод"
+        private void buttonLogin_Click(object sender, EventArgs e)
         {
+            // Создание экземпляра формы для ввода
             Form3 input = new Form3();
+
+            // Отображение формы для ввода и скрытие текущей формы
             input.Show();
             Hide();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        // Обработчик события нажатия кнопки "Выход"
+        private void buttonExit_Click(object sender, EventArgs e)
         {
+            // Закрытие приложения
             Application.Exit();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        // Обработчик события нажатия на метку
+        private void Admin_Click(object sender, EventArgs e)
         {
-          
+            // Создание экземпляра формы №10
             Form10 form10 = new Form10();
+
+            // Отображение формы №10 и скрытие текущей формы
             form10.Show();
             Hide();
         }
