@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -26,21 +26,21 @@ namespace MusicShop
             Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
             // Проверка на заполненность всех текстовых полей
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text) ||
-                string.IsNullOrWhiteSpace(textBox3.Text) || string.IsNullOrWhiteSpace(textBox4.Text))
+            if (string.IsNullOrWhiteSpace(LastNameTextBox.Text) || string.IsNullOrWhiteSpace(FirstNameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(MidNameTextBox.Text) || string.IsNullOrWhiteSpace(PostTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста заполните все текстовые поля.");
                 return;
             }
 
             // Получение данных из текстовых полей
-            string lastName = textBox1.Text;
-            string firstName = textBox2.Text;
-            string midName = textBox3.Text;
-            string post = textBox4.Text;
+            string lastName = LastNameTextBox.Text;
+            string firstName = FirstNameTextBox.Text;
+            string midName = MidNameTextBox.Text;
+            string post = PostTextBox.Text;
             if (DataExists(lastName, firstName, midName, post))
             {
                 MessageBox.Show("Данные уже существуют в базе.");
@@ -94,20 +94,20 @@ namespace MusicShop
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-                    dataGridView1.DataSource = dt;
+                    StaffGridView.DataSource = dt;
                 }
             }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox5.Text))
+            if (string.IsNullOrWhiteSpace(IdStaffTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста, введите Id строки для удаления.");
                 return;
             }
 
-            int id = Convert.ToInt32(textBox5.Text);
+            int id = Convert.ToInt32(IdStaffTextBox.Text);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -130,20 +130,20 @@ namespace MusicShop
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text) ||
-                string.IsNullOrWhiteSpace(textBox3.Text) || string.IsNullOrWhiteSpace(textBox4.Text))
+            if (string.IsNullOrWhiteSpace(LastNameTextBox.Text) || string.IsNullOrWhiteSpace(FirstNameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(MidNameTextBox.Text) || string.IsNullOrWhiteSpace(PostTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста заполните все текстовые поля.");
                 return;
             }
 
             // Получение данных из текстовых полей
-            int id = Convert.ToInt32(textBox5.Text);
+            int id = Convert.ToInt32(IdStaffTextBox.Text);
 
-            string lastName = textBox1.Text;
-            string firstName = textBox2.Text;
-            string midName = textBox3.Text;
-            string post = textBox4.Text;
+            string lastName = LastNameTextBox.Text;
+            string firstName = FirstNameTextBox.Text;
+            string midName = MidNameTextBox.Text;
+            string post = PostTextBox.Text;
             if (DataExists(lastName, firstName, midName, post))
             {
                 MessageBox.Show("Данные уже существуют в базе.");
