@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,12 +33,12 @@ namespace MusicShop
             Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
             // Проверка на заполненность всех текстовых полей
-            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) ||
-                string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(textBox4.Text) ||
-                string.IsNullOrEmpty(textBox5.Text))
+            if (string.IsNullOrEmpty(IdSalesTextBox.Text) || string.IsNullOrEmpty(DateTextBox.Text) ||
+                string.IsNullOrEmpty(RevenueTextBox.Text) || string.IsNullOrEmpty(ExpensesTextBox.Text) ||
+                string.IsNullOrEmpty(ProfitTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста заполните все текстовые поля");
                 return;
@@ -49,11 +49,11 @@ namespace MusicShop
             DateTime period;
             decimal revenue, expenses, profit;
 
-            if (!int.TryParse(textBox1.Text, out id_sales) ||
-                !DateTime.TryParse(textBox2.Text, out period) ||
-                !decimal.TryParse(textBox3.Text, out revenue) ||
-                !decimal.TryParse(textBox4.Text, out expenses) ||
-                !decimal.TryParse(textBox5.Text, out profit))
+            if (!int.TryParse(IdSalesTextBox.Text, out id_sales) ||
+                !DateTime.TryParse(DateTextBox.Text, out period) ||
+                !decimal.TryParse(RevenueTextBox.Text, out revenue) ||
+                !decimal.TryParse(ExpensesTextBox.Text, out expenses) ||
+                !decimal.TryParse(ProfitTextBox.Text, out profit))
             {
                 MessageBox.Show("Пожалуйста,введите верные типовые данные.");
                 return;
@@ -116,20 +116,20 @@ namespace MusicShop
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-                    dataGridView1.DataSource = dt;
+                    ReportsGridView.DataSource = dt;
                 }
             }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox6.Text))
+            if (string.IsNullOrWhiteSpace(IdReportTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста, введите Id строки для удаления.");
                 return;
             }
 
-            int id = Convert.ToInt32(textBox5.Text);
+            int id = Convert.ToInt32(ProfitTextBox.Text);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -153,26 +153,26 @@ namespace MusicShop
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) ||
-               string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(textBox4.Text) ||
-               string.IsNullOrEmpty(textBox5.Text))
+            if (string.IsNullOrEmpty(IdSalesTextBox.Text) || string.IsNullOrEmpty(DateTextBox.Text) ||
+               string.IsNullOrEmpty(RevenueTextBox.Text) || string.IsNullOrEmpty(ExpensesTextBox.Text) ||
+               string.IsNullOrEmpty(ProfitTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста заполните все текстовые поля");
                 return;
             }
 
             // Получение данных из текстовых полей
-            int id = Convert.ToInt32(textBox6.Text);
+            int id = Convert.ToInt32(IdReportTextBox.Text);
 
             int id_sales;
             DateTime period;
             decimal revenue, expenses, profit;
 
-            if (!int.TryParse(textBox1.Text, out id_sales) ||
-                !DateTime.TryParse(textBox2.Text, out period) ||
-                !decimal.TryParse(textBox3.Text, out revenue) ||
-                !decimal.TryParse(textBox4.Text, out expenses) ||
-                !decimal.TryParse(textBox5.Text, out profit))
+            if (!int.TryParse(IdSalesTextBox.Text, out id_sales) ||
+                !DateTime.TryParse(DateTextBox.Text, out period) ||
+                !decimal.TryParse(RevenueTextBox.Text, out revenue) ||
+                !decimal.TryParse(ExpensesTextBox.Text, out expenses) ||
+                !decimal.TryParse(ProfitTextBox.Text, out profit))
             {
                 MessageBox.Show("Пожалуйста,введите верные типовые данные.");
                 return;
