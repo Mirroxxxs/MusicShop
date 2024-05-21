@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,9 +36,9 @@ namespace MusicShop
         private void button1_Click(object sender, EventArgs e)
         {
             // Проверка на заполненность всех текстовых полей
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text) ||
-                string.IsNullOrWhiteSpace(textBox3.Text) || string.IsNullOrWhiteSpace(textBox4.Text) ||
-                string.IsNullOrWhiteSpace(textBox5.Text))
+            if (string.IsNullOrWhiteSpace(IdProductsTextBox.Text) || string.IsNullOrWhiteSpace(IdStaffTextBox.Text) ||
+                string.IsNullOrWhiteSpace(DateTextBox.Text) || string.IsNullOrWhiteSpace(AmountTextBox.Text) ||
+                string.IsNullOrWhiteSpace(CostTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста заполните все текстовые поля.");
                 return;
@@ -49,11 +49,11 @@ namespace MusicShop
             DateTime date;
             decimal cost;
 
-            if (!int.TryParse(textBox1.Text, out id_products) ||
-                !int.TryParse(textBox2.Text, out id_staff) ||
-                !DateTime.TryParse(textBox3.Text, out date) ||
-                !int.TryParse(textBox4.Text, out amount) ||
-                !decimal.TryParse(textBox5.Text, out cost))
+            if (!int.TryParse(IdProductsTextBox.Text, out id_products) ||
+                !int.TryParse(IdStaffTextBox.Text, out id_staff) ||
+                !DateTime.TryParse(DateTextBox.Text, out date) ||
+                !int.TryParse(AmountTextBox.Text, out amount) ||
+                !decimal.TryParse(CostTextBox.Text, out cost))
             {
                 MessageBox.Show("Пожалуйста,введите верные типовые данные");
                 return;
@@ -115,20 +115,20 @@ namespace MusicShop
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-                    dataGridView1.DataSource = dt;
+                    SalesGridView.DataSource = dt;
                 }
             }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox6.Text))
+            if (string.IsNullOrWhiteSpace(IdSalesTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста, введите Id строки для удаления.");
                 return;
             }
 
-            int id = Convert.ToInt32(textBox6.Text);
+            int id = Convert.ToInt32(IdSalesTextBox.Text);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -152,24 +152,24 @@ namespace MusicShop
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text) ||
-           string.IsNullOrWhiteSpace(textBox3.Text) || string.IsNullOrWhiteSpace(textBox4.Text) ||
-           string.IsNullOrWhiteSpace(textBox5.Text))
+            if (string.IsNullOrWhiteSpace(IdProductsTextBox.Text) || string.IsNullOrWhiteSpace(IdStaffTextBox.Text) ||
+           string.IsNullOrWhiteSpace(DateTextBox.Text) || string.IsNullOrWhiteSpace(AmountTextBox.Text) ||
+           string.IsNullOrWhiteSpace(CostTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста,заполните все текстовые поля.");
                 return;
             }
-            int id = Convert.ToInt32(textBox6.Text);
+            int id = Convert.ToInt32(IdSalesTextBox.Text);
 
             int id_products, id_staff, amount;
             DateTime date;
             decimal cost;
 
-            if (!int.TryParse(textBox1.Text, out id_products) ||
-                !int.TryParse(textBox2.Text, out id_staff) ||
-                !DateTime.TryParse(textBox3.Text, out date) ||
-                !int.TryParse(textBox4.Text, out amount) ||
-                !decimal.TryParse(textBox5.Text, out cost))
+            if (!int.TryParse(IdProductsTextBox.Text, out id_products) ||
+                !int.TryParse(IdStaffTextBox.Text, out id_staff) ||
+                !DateTime.TryParse(DateTextBox.Text, out date) ||
+                !int.TryParse(AmountTextBox.Text, out amount) ||
+                !decimal.TryParse(CostTextBox.Text, out cost))
             {
                 MessageBox.Show("Пожалуйста,введите верные типовые данные");
                 return;
