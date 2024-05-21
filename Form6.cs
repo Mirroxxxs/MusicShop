@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MusicShop
 {
@@ -36,14 +28,14 @@ namespace MusicShop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста заполните все текстовые поля");
                 return;
             }
 
             // Получение данных из текстовых полей
-            string name = textBox1.Text;
+            string name = NameTextBox.Text;
 
             if (DataExists(name))
             {
@@ -85,13 +77,13 @@ namespace MusicShop
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            if (string.IsNullOrWhiteSpace(IdCategoriesTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста, введите Id строки для удаления.");
                 return;
             }
 
-            int id = Convert.ToInt32(textBox2.Text);
+            int id = Convert.ToInt32(IdCategoriesTextBox.Text);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -115,15 +107,15 @@ namespace MusicShop
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            if (string.IsNullOrWhiteSpace(IdCategoriesTextBox.Text))
              
             {
                 MessageBox.Show("Пожалуйста,заполните все текстовые поля.");
                 return;
             }
-            int id = Convert.ToInt32(textBox2.Text);
+            int id = Convert.ToInt32(IdCategoriesTextBox.Text);
            
-            string name = textBox1.Text;
+            string name = NameTextBox.Text;
             if (DataExists(name))
             {
                 MessageBox.Show("Данные уже существуют в базе.");
